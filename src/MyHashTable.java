@@ -55,11 +55,27 @@ public class MyHashTable<K,V> {
             }
             current=current.next;
         }
+            if (current.key.equals(key)) {
+                current.value = value;
+            } else {
+                current.next = newNode;
+            }
         size++;
         }
     }
     private int getIndex(K key){
         return hash(key)%M;
+    }
+    public V get(K key){
+        int index = getIndex(key);
+        HashNode<K,V> current = chainArray[index];
+        while(current!=null){
+            if(current.key.equals(key)){
+                return current.value;
+            }
+            current=current.next;
+        }
+        return (V)"null";
     }
 
 
