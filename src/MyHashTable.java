@@ -11,4 +11,14 @@ public class MyHashTable<K,V> {
             return " " + key + " " + value + " ";
         }
     }
-}
+    private HashNode<K,V> chainArray[];
+    private int M = 11; //default number of chains
+    private int size;
+
+    public MyHashTable(){
+        this.M = M;
+        this.chainArray = (HashNode<K, V>[]) new Object[M];
+        this.size = 0;
+    }
+    }
+
