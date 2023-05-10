@@ -42,11 +42,21 @@ public class MyHashTable<K,V> {
     public void put(K key, V value){
         size++;
         int place = getIndex(key);
-        if (chainArray[place] == null) {
-            chainArray[place] = new HashNode<>(key, value);
-            size++;
+        HashNode<K, V> newNode = new HashNode<>(key, value);
+        if(chainArray[place]==null){
+            chainArray[place] = newNode;
         }
-        HashNode<K,V> ca = new HashNode<>(key, value);
+        else{
+        HashNode<K, V> current = chainArray[place];
+        while(current.next != null){// equals от OBJECT  поменяй
+            if(current.key.equals(key)){
+                current.value=value;
+                return;
+            }
+            current=current.next;
+        }
+        size++;
+        }
     }
     private int getIndex(K key){
         return hash(key)%M;
