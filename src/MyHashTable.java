@@ -11,6 +11,13 @@ public class MyHashTable<K,V> {
             this.key = key;
             this.value = value;
         }
+        public K getKey() {
+            return key;
+        }
+
+        public V getValue() {
+            return value;
+        }
         public String toString(){
             return " " + key + " " + value + " ";
         }
@@ -48,6 +55,7 @@ public class MyHashTable<K,V> {
         }
         else{
         HashNode<K, V> current = chainArray[place];
+        if(contains(value)==false){
         while(current.next != null){// equals от OBJECT  поменяй
             if(current.key.equals(key)){
                 current.value=value;
@@ -59,14 +67,14 @@ public class MyHashTable<K,V> {
                 current.value = value;
             } else {
                 current.next = newNode;
-            }
-        size++;
+            }}
+
         }
     }
     private int getIndex(K key){
         return hash(key)%M;
     }
-    public V get(K key){
+        public V get(K key){
         int index = getIndex(key);
         HashNode<K,V> current = chainArray[index];
         while(current!=null){
@@ -80,22 +88,50 @@ public class MyHashTable<K,V> {
     public V remove(K key){
         int index = getIndex(key);
         V element = null;
-        int count = 0;
-        if(chainArray[index].value==get(key)){
-            element = (V) chainArray[index].next.value;
+        if(chainArray[index].getKey()==key){
+            element = chainArray[index].getValue();
             chainArray[index]=chainArray[index].next;
-            size--;
         }
         else {
-            while (chainArray[index].next.value!=get(key)) {
+            while (chainArray[index].next.getKey()!=key) {
                 chainArray[index] = chainArray[index].next;
-                count++;
             }
-            element = (V) chainArray[index].next.value;
+            element = (V) chainArray[index].next.getValue();
             chainArray[index].next = chainArray[index].next.next;
-            size--;
         }
+        size--;
         return element;
+    }
+    public boolean contains(V value){
+        for(int i = 0;i < M;i++){
+            while(chainArray[i]!=null){
+                if(chainArray[i].getValue().equals(value)){
+                    return true;
+                }
+                chainArray[i] = chainArray[i].next;
+            }
+        }
+        return false;
+    }
+    public K getKey(V value){
+        for(int i = 0;i < M;i++){
+            while(chainArray[i]!=null){
+                if(chainArray[i].getValue().equals(value)){
+                    return chainArray[i].getKey();
+                }
+                chainArray[i] = chainArray[i].next;
+            }
+        }
+        return null;
+    }
+    public void getAll(){
+        for(int i = 0;i < M;i++){
+            while(chainArray[i]!=null){
+                System.out.print(chainArray[i].getValue()+" ");
+                chainArray[i] = chainArray[i].next;
+            }
+            System.out.println("\n\n");
+        }
     }
 
 
