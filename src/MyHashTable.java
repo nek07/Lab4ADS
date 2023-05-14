@@ -18,23 +18,26 @@ public class MyHashTable<K,V> {
         public V getValue() {
             return value;
         }
+        public void setValue(V value) {
+            this.value = value;
+        }
         public String toString(){
             return " " + key + " " + value + " ";
         }
     }
-    private HashNode<K,V>[] chainArray;
+    private LinkedList<HashNode<K, V>>[] chainArray;
     private int M = 11; //default number of chains
     private int size;
 
 
     public MyHashTable(){
         this.M = M;
-        chainArray = new HashNode[M];
+        chainArray = new LinkedList[M];
         this.size = 0;
     }
     public MyHashTable(int chains){
         this.M = chains;
-        chainArray = new HashNode[M];
+        chainArray = new LinkedList[M];
         this.size = 0;
 
     }
@@ -48,29 +51,20 @@ public class MyHashTable<K,V> {
     }
     public void put(K key, V value){
         size++;
-        int place = getIndex(key);
-        HashNode<K, V> newNode = new HashNode<>(key, value);
-        if(chainArray[place]==null){
-            chainArray[place] = newNode;
+        int index = hash(key);
+        if (chainArray[index] == null){
+            chainArray[index] = new LinkedList<>();
         }
-        else{
-        HashNode<K, V> current = chainArray[place];
-        if(contains(value)==false){
-        while(current.next != null){// equals от OBJECT  поменяй
+        for (HashNode<K, V> current: chainArray[index]){
             if(current.key.equals(key)){
-                current.value=value;
+                current.value = value;
                 return;
             }
-            current=current.next;
         }
-            if (current.key.equals(key)) {
-                current.value = value;
-            } else {
-                current.next = newNode;
-            }}
+        chainArray[index].add(new HashNode<K, V>(key, value));
 
         }
-    }
+
     private int getIndex(K key){
         return hash(key)%M;
     }
