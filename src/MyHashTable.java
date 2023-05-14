@@ -70,50 +70,43 @@ public class MyHashTable<K,V> {
     }
         public V get(K key){
         int index = getIndex(key);
-        HashNode<K,V> current = chainArray[index];
-        while(current!=null){
+        for(HashNode<K, V> current: chainArray[index]){
             if(current.key.equals(key)){
                 return current.value;
             }
-            current=current.next;
         }
         return null;
     }
     public V remove(K key){
         int index = getIndex(key);
-        V element = null;
-        if(chainArray[index].getKey()==key){
-            element = chainArray[index].getValue();
-            chainArray[index]=chainArray[index].next;
+        if(chainArray[index] == null){
+            return null;
         }
-        else {
-            while (chainArray[index].next.getKey()!=key) {
-                chainArray[index] = chainArray[index].next;
-            }
-            element = (V) chainArray[index].next.getValue();
-            chainArray[index].next = chainArray[index].next.next;
+        else{
+            for (HashNode<K, V> current: chainArray[index]){
+                if(current.getKey().equals(key)) {
+                    chainArray[index].remove(current);
+                    size--;
+                    return current.getValue();
+                }
         }
-        size--;
-        return element;
-    }
+    }}
     public boolean contains(V value){
         for(int i = 0;i < M;i++){
-            while(chainArray[i]!=null){
-                if(chainArray[i].getValue().equals(value)){
+            for(HashNode<K, V> current: chainArray[i]){
+                if(current.getValue().equals(value)){
                     return true;
                 }
-                chainArray[i] = chainArray[i].next;
             }
         }
         return false;
     }
     public K getKey(V value){
         for(int i = 0;i < M;i++){
-            while(chainArray[i]!=null){
-                if(chainArray[i].getValue().equals(value)){
-                    return chainArray[i].getKey();
+            for(HashNode<K, V> current: chainArray[i]){
+                if(current.getValue().equals(value)){
+                    return current.getKey();
                 }
-                chainArray[i] = chainArray[i].next;
             }
         }
         return null;
