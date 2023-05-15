@@ -100,24 +100,28 @@ public class MyHashTable<K,V> {
 
     public boolean contains(V value) {
         for (int i = 0; i < M; i++) {
+            if(chainArray[i]!=null){
             for (HashNode<K, V> current : chainArray[i]) {
                 if (current.getValue().equals(value)) {
                     return true;
                 }
             }
-        }
-        return false;
-    }
+        }}
+        return false; //README
+
+}
 
     public K getKey(V value) {
+
         for (int i = 0; i < M; i++) {
+            if(chainArray[i]!=null){
             for (HashNode<K, V> current : chainArray[i]) {
                 if (current.getValue().equals(value)) {
                     return current.getKey();
                 }
-            }
+            }}
         }
-        return null;
+        return null; //readme
     }
 
     public void getAll(int chain) {
