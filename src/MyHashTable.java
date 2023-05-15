@@ -48,12 +48,20 @@ public class MyHashTable<K,V> {
         this.size = 0;
 
     }
-
+    /*
+      Calculates the hash code for the given key.
+      @param key - the key for which to calculate the hash code
+      @return the hash code of the key
+     */
     public int hash(K key) {
         MyTestingClass mt = new MyTestingClass((key));
         return mt.HashCode(key) % M;
     }
-
+    /*
+     Adds a key-value pair in the hash table.
+     @param key - the key of the entry
+     @param value the value of the entry
+     */
     public void put(K key, V value) {
         size++;
         int index = hash(key);
