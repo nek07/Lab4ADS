@@ -1,6 +1,9 @@
 public class MyTestingClass<T> {
     private T obj;
-
+    /*
+      Constructor of the class
+      @obj - generic type any element
+     */
     public MyTestingClass(T obj){
         this.obj = obj;
     }

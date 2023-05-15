@@ -125,7 +125,7 @@ public void getAll(){
         }
     }
 ```
-#HashNode
+# HashNode
 ### ➕ HashNode(K key, V value)
 **Description**: Constructor of the class.
 ```java
@@ -155,7 +155,7 @@ public void setValue(V value) {
             this.value = value;
         }
 ```
-#MyTestingClass
+# MyTestingClass
 ### ➕ MyTestingClass(T obj)
 **Description**: Constructor of the class
 ```java
@@ -163,8 +163,8 @@ public MyTestingClass(T obj){
         this.obj = obj;
         }
 ```
-### ➕
-**Description**:
+### ➕ HashCode()
+**Description**: Calculates the hash code for the given object. If the instance of value `instanceof` is String, then function calls `StringHashCode`, otherwise `IntegerHashCode`.
 ```java
 ublic int HashCode(T obj){
         if (obj == null) {
@@ -178,8 +178,8 @@ ublic int HashCode(T obj){
         }
         return hashCode;}
 ```
-### ➕
-**Description**:
+### ➕ StringHashCode()
+**Description**: Calculates the hash code for a string value.
 ```java
 public static int StringHashCode(String value){
         if(value == null){
@@ -195,8 +195,8 @@ public static int StringHashCode(String value){
         return Math.abs(hash);
     }
 ```
-### ➕
-**Description**:
+### ➕ IntegerHashCode()
+**Description**: Calculates the hash code for a integer value.
 ```java
 public int IntegerHashCode(Integer value){
         if(value == null){
