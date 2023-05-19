@@ -189,6 +189,25 @@ public class MyHashTable<K,V> {
     public int size() {
         return size;
     }
+
+    /*
+       Finds the value which pair with key and replace it by newValue
+       @K key - key
+       @V oldValue - current value
+       @V newValue - new value
+       @return boolean - if value will be replaced true, otherwise false
+     */
+    public boolean replace(K key, V oldValue, V newValue){
+        int index = hash(key);
+        for (HashNode<K, V> current : chainArray[index]) {
+            if (current.getKey().equals(key) && current.getValue().equals(oldValue)) {
+                current.value = newValue;
+                return true; //key was founded and value replaced
+            }
+        }
+        return false; //there is no such index
+
+    }
 }
 
 

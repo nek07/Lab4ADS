@@ -48,6 +48,21 @@ public class Main {
 
         printInt();
 
+        System.out.println(" \n-------- DEFENCE CODE -------- ");
+        mht2.put("Joe", 17);
+        System.out.println(mht2.get("Joe"));
+        System.out.println(mht2.replace("Joe",17,18));
+        System.out.println(mht2.get("Joe"));
+
+        System.out.println("\n");
+
+        mht2.put("Almas", 30);
+        System.out.println(mht2.get("Almas"));
+        System.out.println(mht2.replace("Almas",30,31));
+        System.out.println(mht2.get("Almas"));
+
+
+
 
 
 
